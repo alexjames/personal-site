@@ -1,7 +1,7 @@
 ### About
 Hello there! This is the personal web page of Alex James.
 
-I work in technology and am a software engineer by training. I'm passionate about building things. My interests lie primarily in large-scale 
+I work in technology and am a software engineer by training. I'm passionate about building things. My interests lie primarily in distributed
 system design, computer systems and secure architecture. My hobbies include reading, photography, playing tennis and traveling.
 
 This site is where I hope to document everything interesting I'd like to share with the world.

@@ -1,5 +1,5 @@
 ### Technology
- * Article 2
+ * [Web Browser Architecture](/articles/web-browser-architecture)
 
 ### Random
  * Article 1
