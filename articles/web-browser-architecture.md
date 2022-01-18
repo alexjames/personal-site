@@ -56,17 +56,23 @@ To make things more interesting, let’s add a <head> tag. Within that, we’ll 
 
 We’ll assume that this HTML is being served on the domain “www.example.com”. You can access this page by typing in the domain name in any standard web browser’s URL bar. Here is what the final page would appear as -
 
+![Webpage Preview](/assets/web-browser-architecture-preview.png)
+<p style="text-align: center;font-weight: bold;"> Figure: Web page preview </p>
+
 Architecture
 A web browser in its simplest form is an HTTP client. It makes requests to web servers using the HTTP protocol and retrieves the responses. It then processes those responses to display the corresponding data in the browser window.
 
 Figure x shows a reference architecture [3] for components of a web browser.
-The user interface consists of everything that is visible to a user within the browser window.
-The rendering engine parses and lays out the web document.
-The networking engine encompasses all networking functionality.
-The javascript interpreter executes scripts contained on a page.
-The UI backend is tasked with the actual drawing on the window. 
-The browser engine provides an interface into the rendering engine.
-A data persistence layer handles cookies, caches and bookmarks.
+ * The user interface consists of everything that is visible to a user within the browser window.
+ * The rendering engine parses and lays out the web document.
+ * The networking engine encompasses all networking functionality.
+ * The javascript interpreter executes scripts contained on a page.
+ * The UI backend is tasked with the actual drawing on the window. 
+ * The browser engine provides an interface into the rendering engine.
+ * A data persistence layer handles cookies, caches and bookmarks.
+
+<img style="display: block; margin: auto;" src="/assets/web-browser-architecture-browser-arch.png">
+<p style="text-align: center;font-weight: bold;"> Figure: Web Browser Components </p>
 
 These are the five high-level steps for displaying the page in the browser:
 1. The document is fetched.
@@ -99,7 +105,6 @@ Content-Type: text/html; charset=UTF-8
 Server: Apache/2.4.1 (Unix)
 <head>
   <body>
-...
 ```
 
 The Content-Type header instructs the browser how to interpret the data portion of the HTTP response. "text/html; charset=UTF-8"  basically means that the data being sent back is an HTML document using UTF-8 character encoding. Content-Length specifies the size of the document data. The browser strips the data from the response message to acquire the actual web page.
@@ -120,13 +125,13 @@ The DOM is an "object" representation (in the programming language sense) of all
 
 The DOM tree consists of nodes that represent the parts of the document. Every tag in the  HTML ends up being stored hierarchically as a node in the tree. The browser does not necessarily need to store the data internally as a tree, as long as it exposes an interface consistent with the DOM interface. The DOM tree created from our example file looks like this -
 
-
-
+<img style="display: block; margin: auto;" src="/assets/web-browser-architecture-dom.png">
+<p style="text-align: center;font-weight: bold;"> Figure: DOM tree for our example HTML document </p>
 
 The browser also parses the style information from CSS styling sheets and tag attributes to generate separate styling trees. The nodes in the styling tree may or may not have 1:1 correspondence with the nodes of the DOM tree. Here is an example of what that might look like for our example HTML.
 
-
-
+<img style="display: block; margin: auto;" src="/assets/web-browser-architecture-tree.png">
+<p style="text-align: center;font-weight: bold;"> Figure: DOM tree with CSS styling information </p>
 
 ### Layout
 By the end of the previous stage, the browser has figured out the elements of the document and some of their visual characteristics. It can now use this information to compute the layout of each visible element on the screen. The layout step determines the geometry and position of every object that is to be rendered. The layout process is also known as the reflow process. 

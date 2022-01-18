@@ -13,4 +13,4 @@ to relevant experts based on your needs.
 
 #### Contact
  * [LinkedIn](https://www.linkedin.com/in/alex-james-93a36024)
- * [Email](alx.james[at]gmail.com)
+ * [Email](mailto:alx.james@gmail.com)
