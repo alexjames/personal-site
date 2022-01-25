@@ -164,7 +164,7 @@ There's a lot happening when you hit open your browser in the morning. A lot of 
 [1] [How Browsers Work: Behind the scenes of modern web browsers](https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/)
 
 
-[2] [DOM|CSS Visualizer](https://fritscher.ch/dom-css/)
+[2] [DOM/CSS Visualizer](https://fritscher.ch/dom-css/)
 
 [3] [Render-tree Construction, Layout, and Paint](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction)
 
@@ -178,4 +178,4 @@ There's a lot happening when you hit open your browser in the morning. A lot of 
 
 [8] [Statcounter: Browser Market Share Worldwide](https://gs.statcounter.com/browser-market-share#monthly-202201-202201-map)
 
-[9] [User-Agent | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent#chrome_ua_string)
+[9] [User-Agent - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent#chrome_ua_string)
