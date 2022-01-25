@@ -2,7 +2,7 @@
 
 No discussion of web technologies is complete without understanding the internals of a web browser. In some sense, the browser is the operating system of the internet, for a large part of your web experience is facilitated by it. Modern browsers are fairly complex beasts. They do everything from displaying interactive web pages to implementing strong privacy/security measures and everything in between. In this post we'll attempt to build an intuitive understanding of what happens under the hood when you hit enter on a web URL.
 
-Let's take a look at the high level steps that a typical browser might take to display a page. The concepts we discuss here are browser-agnostic. Most browsers tend to work in a similar way, even though specific implementation details may vary across browser versions and platforms. 
+Let's take a look at the high level steps that a typical browser might take to display a page. The concepts we discuss here are browser-agnostic. Most browsers tend to work in a similar way, even though specific implementation details may vary across browser versions and platforms.
 
 For illustrative purposes, let’s take a look at a simple HTML file.
 
@@ -62,7 +62,7 @@ We’ll assume that this HTML is being served on the domain `www.example.com`. Y
 ### Architecture
 A web browser in its simplest form is an HTTP client. It makes requests to web servers using the HTTP protocol and retrieves the responses. It then processes those responses to display the corresponding data in the browser window.
 
-Figure 2 shows a reference architecture [3] for components of a web browser.
+Figure 2 shows a reference architecture [1] for components of a web browser.
  * The **user interface** consists of everything that is visible to a user within the browser window.
  * The **rendering engine** parses and lays out the web document.
  * The **networking engine** encompasses all networking functionality.
@@ -93,7 +93,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 Connection: keep-alive
 ```
 
-The User-Agent header identifies the browser to the server. This particular request originates from the Chrome browser [7]. The Connection header specifies the intent to maintain a persistent TCP connection for multiple HTTP requests.
+The User-Agent header identifies the browser to the server. This particular request originates from the Chrome browser [9]. The Connection header specifies the intent to maintain a persistent TCP connection for multiple HTTP requests.
 
 The web server responds back with an HTTP 200 status and the web page that has been requested.
 
@@ -111,7 +111,7 @@ Server: Apache/2.4.1 (Unix)
 The Content-Type header instructs the browser how to interpret the data portion of the HTTP response. `text/html; charset=UTF-8`  basically means that the data being sent back is an HTML document using UTF-8 character encoding. Content-Length specifies the size of the document data. The browser strips the data from the response message to acquire the actual web page.
 
 A browser might also add the Accept-Encoding header with values like `gzip, deflate`
-the request. This tells the web server that it supports data compression. In such a case, the server might decide to compress the data before it sends it. This allows for less data to be sent over the wire, with a little extra work required by both the server and the browser. Since the cost of network communication tends to add the biggest delay while processing a web page, the lesser the bytes that need to be sent, the sooner the browser can receive the data and work on displaying it.
+the request. This tells the web server that it supports data compression. In such a case, the server might decide to compress the data before it sends it. This allows for less data to be sent over the wire, with a little extra work required by both the server and the browser. Since the cost of network communication tends to add the biggest delay while processing a web page, the fewer the bytes that need to be sent, the sooner the browser can receive the data and work on displaying it.
 
 ### Parse
 Now that the browser has the web page, it can start parsing the document. Parsing is the process of reading the HTML data and translating it into a representation that the browser understands. This typically means constructing one or more data structures (or “trees”) that help the browser understand the data.
@@ -156,9 +156,26 @@ In recent years, web pages have become more interactive. This interactivity is b
 
 In our demo page, we have a script that modifies the paragraph tag and changes the text to “Welcome”. In the initial rendering, the browser might display “Hello there!”. After the page is loaded, the script handler is executed which updates the innerHTML of the `<p>` tag. This re-engages the browser to update this part of the page, replace the text and redraw it on the screen. This update might happen in the blink of an eye and may not be noticeable.
 
-### Typing It All Together
-In 2022, Chrome remains the king of browsers in terms of browser market share [link], with about three times as much as its next closest competitor, Safari. Edge and Firefox. Chrome makes use of the Blink rendering engine. Safari uses Webkit.
+### Tying It All Together
+There's a lot happening when you hit open your browser in the morning. A lot of work goes into displaying your favorite news sites or email. As software projects, browsers tend to have vast code bases with long compilation times. Their core feature-sets tend to be universal. All popular browsers provide similar features in terms of usability, security, privacy and extension support. UX can vary as some websites are optimized for certain browsers. All being said, choice of browser tends to be a function of the platform's default and personal preference. In 2022, Chrome remains the king of browsers in terms of browser market share [8], with about three times as much as its next closest competitor, Safari. Edge and Firefox are in close third and fourth place respectively.
 
 ### References
 
-https://gs.statcounter.com/browser-market-share#monthly-202201-202201-map
+[1] [How Browsers Work: Behind the scenes of modern web browsers](https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/)
+
+
+[2] [DOM|CSS Visualizer](https://fritscher.ch/dom-css/)
+
+[3] [Render-tree Construction, Layout, and Paint](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction)
+
+[4] [A Reference Architecture for Web Browsers](https://grosskurth.ca/papers/browser-refarch.pdf)
+
+[5] [How browsers work](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work)
+
+[6] [HTML Spec](https://html.spec.whatwg.org/)
+
+[7] [GPU accelerated compositing in Chrome](https://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome)
+
+[8] [Statcounter: Browser Market Share Worldwide](https://gs.statcounter.com/browser-market-share#monthly-202201-202201-map)
+
+[9] [User-Agent | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent#chrome_ua_string)
